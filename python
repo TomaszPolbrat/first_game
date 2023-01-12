@@ -1,4 +1,9 @@
 import time
+
+sex_pronoun = "placeholder"
+name_list = ["Rafas","Kostas","Stelios","Vaso","Litsa","Maria"]
+weapon_list = ["Sword", "Axe", "Spear"]
+
 time.sleep(2)
 print("Your mission is to find the treasure.")
 time.sleep(5)
@@ -9,44 +14,47 @@ time.sleep(5)
 print("To survive, you have to head into the center of the island and solve some puzzles to get food and water. Good luck soldier.")
 time.sleep(5)
 
-sex = input("Do you want to play as a boy or a girl?")
+sex = input("Do you want to play as a boy or a girl (lowercase)?")
 while not (sex == "boy" or sex == "girl"):
     sex = input('PLEASE enter boy or girl as sex, only!')
 
 if sex == "boy":
+    sex_pronoun = "he"
     time.sleep(2)
-    name1 = input("Choose a name from these => Rafas,Kostas,Stelios:")
-    while not (name1.lower() == 'rafas' or name1.lower() == "kostas" or name1.lower() == "stelios"):
-       time.sleep(2)
-       name1 = input("Please choose a name from these => Rafas,Kostas,Stelios.")
-    if name1.lower() == "rafas" or name1.lower() == "stelios" or name1.lower() == "kostas":
-       time.sleep(2)
-       print(f"Welcome {name1.lower()}.")
+    name1 = input(f"Choose a name from these => {name_list[0]},{name_list[1]},{name_list[2]}:")
+    #while not (name1.lower() == 'rafas' or name1.lower() == "kostas" or name1.lower() == "stelios"):
+    while not (name1 in name_list):
+        time.sleep(2)
+        name1 = input(f"Please choose a name from these => {name_list[0]},{name_list[1]},{name_list[2]}.")
+    if name1 in name_list:
+        time.sleep(2)
+        print(f"Welcome {name1}.")
 
 
 if sex == "girl":
+    sex_pronoun = "she"
     time.sleep(2)
-    name1 = input("Choose a name from these => Vaso, Litsa, Maria:")
-    while not (name1.lower() == 'maria' or name1.lower() == "vaso" or name1.lower() == "litsa"):
-       time.sleep(2)
-       name1 = input("Please choose a name from these => Vaso, Litsa, Maria:")
-    if name1.lower() == "maria" or name1.lower() == "vaso" or name1.lower() == "litsa":
-       time.sleep(2)
-       print(f"Welcome {name1.lower()}.")
+    name1 = input(f"Choose a name from these => {name_list[3]},{name_list[4]},{name_list[5]}:")
+    while not (name1 in name_list):
+        time.sleep(2)
+        name1 = input(f"Please choose a name from these => {name_list[3]},{name_list[4]},{name_list[5]}.")
+    if name1 in name_list:
+        time.sleep(2)
+        print(f"Welcome {name1}.")
 
 
 
 #weapon choosing phase
 time.sleep(2)
-x = input("Now that you have chosen a name, choose your weapon from the list below.\nList of weapons : Sword, Axe, Spear:")
+riddle = input(f"Now that you have chosen a name, choose your weapon from the list below.\nList of weapons : {weapon_list[0]}, {weapon_list[1]}, {weapon_list[2]}:")
 time.sleep(2)
-while not (x.lower() == "sword" or x.lower() == "axe" or x.lower() == "spear"):
+while not (riddle in weapon_list):
     time.sleep(2)
-    x = input("Now that you have chosen a name, choose your weapon from the list of weapons : Sword, Axe, Spear :")
+    riddle = input(f"Now that you have chosen a name, choose your weapon from the list of weapons : {weapon_list[0]}, {weapon_list[1]}, {weapon_list[2]}:")
     time.sleep(2)
-if x.lower() == "sword" or x.lower() == "axe" or x.lower() == "spear":
+if riddle in weapon_list:
    time.sleep(2)
-   print(f"The {x.lower()} is a fine choice!")
+   print(f"The {riddle.lower()} is a fine choice!")
 
 time.sleep(3)
 print("Now its time for you to head into the island.")
@@ -80,48 +88,31 @@ if path.lower() == "right":
 
 #riddlephase #<<x>> will be used instead of <<userword>> to shorten the code
 time.sleep(3)
-print(f"As {name1} was running...he found a riddle to solve.\n You have to find a word that contains at least 3 of the letters listed to proceed.\nList => a,e,r,u,p,t")
+print(f"As {name1} was running...{sex_pronoun} found a riddle to solve.\n You have to find a word that contains at least 3 of the letters listed to proceed.\nList => a,e,r,u,p,t")
+passed_riddle = False
 
 
 time.sleep(2)
-x = input("Please enter your word here:")
-time.sleep(2)
-x = x.lower()
-if x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") >=3:
+while passed_riddle == False:
+    riddle = input("Please enter your word here:")
     time.sleep(2)
-    print ("You have successfully passed the trial.")
+    riddle = riddle.lower()
+    letters = riddle.count("a") +riddle.count("e")+ riddle.count("r") + riddle.count("u") +riddle.count("p") + riddle.count("t")
 
 
-
-elif x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") >=1 and x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") <=2:
-   while x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") >=1 and x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") <=2:
-      time.sleep(2)
-      print("You have one more chance.")
-      time.sleep(2)
-      x = input("Please enter your word here:")
-      x = x.lower()
-      if  x.count("a") +x.count("e")+ x.count("r") + x.count("u") +x.count("p") + x.count("t") >=3:
-         time.sleep(2)
-         print("Finally, you passed the trial.")
-
-
-else:
-    time.sleep(2)
-    print("You are dead and will respawn in 5 seconds.")
-    time.sleep(2)
-    x = input("Please enter your word here:")
-    time.sleep(2)
-    x = x.lower()
-    while x.count("a") + x.count("e") + x.count("r") + x.count("u") + x.count("p") + x.count("t") <= 0:
+    if letters >=3:
         time.sleep(2)
-        print("You are dead,yet again and will respawn in 5 seconds.")
-        time.sleep(2)
-        x = input("Please enter your word here:")
-        x = x.lower()
-        if x.count("a") + x.count("e") + x.count("r") + x.count("u") + x.count("p") + x.count("t") >=3:
-           time.sleep(2)
-           print("Finally you passed the trial.")
+        print ("You have successfully passed the trial.")
+        passed_riddle = True
 
+    elif letters >=1 and letters <=2:
+        time.sleep(2)
+        print("You have one more chance.")
+
+    else:
+        time.sleep(2)
+        print("You are dead and will respawn in 5 seconds.")
+        time.sleep(3)
 
 time.sleep(3)
 
